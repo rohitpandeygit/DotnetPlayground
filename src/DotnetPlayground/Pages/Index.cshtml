@@ -1,0 +1,15 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+<section class="hero">
+    <h1>Hello from .NET 👋</h1>
+    <p>This is your DevOps playground. Build it, ship it, scale it.</p>
+    <p class="muted">Server time: @Model.ServerTime.ToString("u")</p>
+</section>
+<section class="grid">
+    <article><h3>🐳 Docker</h3><p>A multi-stage Dockerfile is included.</p></article>
+    <article><h3>⚙️ CI</h3><p>GitHub Actions builds, tests and pushes to GHCR.</p></article>
+    <article><h3>☸️ Kubernetes</h3><p>Deployment, Service and Ingress in <code>/k8s</code>.</p></article>
+</section>

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-playground
+  labels:
+    app: dotnet-playground
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dotnet-playground
+  template:
+    metadata:
+      labels:
+        app: dotnet-playground
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/OWNER/REPO:latest # ← replace
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:8080"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "96Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
