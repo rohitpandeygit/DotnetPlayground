@@ -5,5 +5,5 @@ obj/
 .idea/
 .vscode/
 *.swp
-argocd*
+argocd.exe
 .exe*
