@@ -31,24 +31,24 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dotnetplayground:${{ steps.vars.outputs.sha_short }}
 
-  deploy-local:
-    needs: build-and-push
-    runs-on: msi-runner # This targets your laptop
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # deploy-local:
+  #   needs: build-and-push
+  #   runs-on: msi-runner # This targets your laptop
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Update Deployment Image
-        run: |
-          # Replace the placeholder with the actual Git SHA
-          (Get-Content deployment.yaml) -replace 'IMAGE_TAG_PLACEHOLDER', '${{ needs.build-and-push.outputs.tag }}' | Set-Content deployment.yaml
+  #     - name: Update Deployment Image
+  #       run: |
+  #         # Replace the placeholder with the actual Git SHA
+  #         (Get-Content deployment.yaml) -replace 'IMAGE_TAG_PLACEHOLDER', '${{ needs.build-and-push.outputs.tag }}' | Set-Content deployment.yaml
           
-          # Apply to local cluster
-          kubectl config use-context docker-desktop
-          kubectl apply -f deployment.yaml
+  #         # Apply to local cluster
+  #         kubectl config use-context docker-desktop
+  #         kubectl apply -f deployment.yaml
           
-          # Verify the rollout
-          kubectl rollout status deployment/dotnet-playground
+  #         # Verify the rollout
+  #         kubectl rollout status deployment/dotnet-playground
 
 
 
