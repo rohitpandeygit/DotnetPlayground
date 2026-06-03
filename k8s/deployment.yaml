@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: stalker007/dotnetplayground:1952f93          #ghcr.io/OWNER/REPO:latest # ← replace
+          image: stalker007/dotnetplayground:32f02b6
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
