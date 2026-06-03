@@ -1,5 +1,8 @@
 name: Build and Deploy to Local K8s
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch: # Allows manual triggering from GitHub U
     inputs:
       environment:
@@ -35,7 +38,7 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     permissions:
-      contents: write # This targets your laptop
+      contents: write 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
