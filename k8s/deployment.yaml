@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: stalker007/dotnetplayground:f47aab0
+          image: stalker007/dotnetplayground:d2907da
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
