@@ -33,7 +33,9 @@ jobs:
 
   update-maniifest:
     needs: build-and-push
-    runs-on: ubuntu-latest # This targets your laptop
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # This targets your laptop
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
